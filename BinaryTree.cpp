@@ -7,7 +7,7 @@ using namespace std;
 int n,m,btree[500010],a[500010];
 int lowbit(int x){return x&(-x);}
 void add(int x,int k){ for(int i=x;i<n;i+=lowbit(i)) {btree[i]+=k;} }
-int getsum(int x){ int ans=0; for(int i=x;i;i-=lowbit(i))ans+=c[i]; return ans; }
+int getsum(int x){ int ans=0; for(int i=x;i;i-=lowbit(i))ans+=btree[i]; return ans; }
 
 int main(){
     scanf("%d%d",&n,&m);

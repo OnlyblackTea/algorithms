@@ -41,7 +41,7 @@ int main(){
     for(i=1;i<=n;i++){
         scanf("%d",a+i);
     }
-    int ans=0;
+    long long ans=0;
     merge_sort(1,n,a,t,ans);
     printf("%lld\n",ans);
     return 0;

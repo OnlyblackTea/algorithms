@@ -7,18 +7,22 @@
 #include<string>
 using namespace std;
 struct BigInteger {
-    static const int BASE = 100000000;
-    static const int WIDTH = 8;
+    static const int BASE = 10000;
+    static const int WIDTH = 4;//s每一个单元保存4位数
     vector<int> s;
+    BigInteger operator = (const string& str);
+    BigInteger operator = (int);
+    BigInteger operator = (long long);
     BigInteger(long long num = 0) { *this = num; }
-    BigInteger operator = (long long num) {
-        s.clear();
-        do {
-            s.push_back(num % BASE);
-            num/=BASE;
-        } while(num > 0);
-        return *this;
-    }
+    BigInteger operator + (int);
+    BigInteger operator - (const int);
+    BigInteger operator * (const int);
+    BigInteger operator / (const int);
+    BigInteger operator + (const BigInteger);
+    BigInteger operator - (const BigInteger);
+    BigInteger operator * (const BigInteger);
+    BigInteger operator / (const BigInteger);
+
     BigInteger operator = (const string& str) {
         s.clear();
         int x, len = (str.length() - 1)/WIDTH + 1;
@@ -29,6 +33,29 @@ struct BigInteger {
             s.push_back(x);
         }
         return *this;
+    }
+    BigInteger operator = (long long num) {
+        s.clear();
+        do {
+            s.push_back(num % BASE);
+            num/=BASE;
+        } while(num > 0);
+        return *this;
+    }
+    BigInteger operator = (int num){
+        s.clear();
+        do{
+            s.push_back(num % BASE);
+            num /= BASE;
+        }while(num > 0);
+        return *this;
+    }
+    BigInteger operator + (BigInteger num){
+        
+    }
+    BigInteger operator + (int num) {
+        BigInteger Num = num;
+        return *this + Num;
     }
 };
 ostream& operator << (ostream &out, const BigInteger& x){
@@ -45,7 +72,7 @@ istream& operator >> (istream &in, BigInteger& x){
     if(!(in >> s)) return in;
     x = s;
     return in;
-}
+} 
 int main(){
 
 }
